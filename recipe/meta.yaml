@@ -11,15 +11,15 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - absl-py
     - attrdict
     - bs4
@@ -38,6 +38,8 @@ requirements:
     - pysoundfile
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - deepspeech_training
     - deepspeech_training.util  
